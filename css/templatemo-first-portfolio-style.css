@@ -521,9 +521,10 @@ strong {
 .hero-image {
   position: absolute;
   z-index: 22;
-  top: 0;
-  width: 100%;
-  min-width: 550px;
+  top: 20px;
+  left: 190px;
+  width: 29%;
+  min-width: 20px;
 }
 
 .hero svg {
@@ -580,12 +581,15 @@ strong {
   padding-left: 20px;
 }
 
+.about {
+  background: var(--section-bg-color);
+}
 
 /*---------------------------------------
   FEATURED              
 -----------------------------------------*/
 .featured-numbers {
-  font-size: var(--h1-font-size);
+  font-size: var(--h4-font-size);
   line-height: normal;
   display: block;
 }
@@ -713,6 +717,17 @@ strong {
   pointer-events: none;
 }
 
+.services-major {
+  color: var(--primary-color);
+}
+
+.services-tag {
+  font-size: 16px;
+  font-weight: var(--font-weight-medium);
+  color: var(--p-color);
+  text-transform: uppercase;
+  margin-top: 20px;
+}
 
 /*---------------------------------------
   PROJECTS              
@@ -748,20 +763,23 @@ strong {
   border-radius: var(--border-radius-medium);
   display: block;
   width: 100%;
-  transform: rotate(10deg) translateY(80px);
-  transition: all ease 0.5s;
 }
 
 .projects-title {
+  margin-bottom: 10px;
+}
+
+.projects-major {
   margin-bottom: 20px;
+  color: var(--primary-color);
 }
 
 .projects-tag {
   font-size: var(--menu-font-size);
   font-weight: var(--font-weight-medium);
-  color: var(--secondary-color);
+  color: var(--p-color);
   text-transform: uppercase;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 

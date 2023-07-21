@@ -548,6 +548,7 @@ url("../fonts/bootstrap-icons.woff?30af91bf14e37666a085fb8a161ff36d") format("wo
 .bi-earbuds::before { content: "\f30e"; }
 .bi-easel-fill::before { content: "\f30f"; }
 .bi-easel::before { content: "\f310"; }
+.bi-easel3:before { content: "\f66f"; }
 .bi-egg-fill::before { content: "\f311"; }
 .bi-egg-fried::before { content: "\f312"; }
 .bi-egg::before { content: "\f313"; }
