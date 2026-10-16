@@ -1,33 +1,22 @@
-
-  (function ($) {
-  
+(function ($) {
   "use strict";
-
-    // PRE LOADER
-    $(window).load(function(){
-      $('.preloader').fadeOut(1000); // set duration in brackets    
-    });
-
-    // CUSTOM LINK
-    $('.custom-link').click(function(){
-    var el = $(this).attr('href');
-    var elWrapped = $(el);
-    var header_height = $('.navbar').height() + 10;
-
-    scrollToDiv(elWrapped,header_height);
-    return false;
-
-    function scrollToDiv(element,navheight){
-      var offset = element.offset();
-      var offsetTop = offset.top;
-      var totalScroll = offsetTop-navheight;
-
-      $('body,html').animate({
-      scrollTop: totalScroll
-      }, 300);
-  }
-});
-    
-  })(window.jQuery);
-
-
+  $(window).on('load', function () { $('.preloader').fadeOut(150); });
+  $('a[href^="#"]').on('click', function (event) {
+    var target = document.getElementById(this.hash.slice(1));
+    if (!target) return;
+    event.preventDefault();
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 100, behavior: reduced ? 'auto' : 'smooth' });
+    history.replaceState(null, '', this.hash);
+    target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+    var menu = document.getElementById('navbarNav');
+    if (menu.classList.contains('collapsing')) {
+      menu.addEventListener('shown.bs.collapse', function () {
+        bootstrap.Collapse.getOrCreateInstance(menu).hide();
+      }, { once: true });
+    } else if (menu.classList.contains('show')) {
+      bootstrap.Collapse.getOrCreateInstance(menu).hide();
+    }
+  });
+})(window.jQuery);

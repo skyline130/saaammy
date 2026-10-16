@@ -1,37 +1,19 @@
-//jquery-click-scroll
-//by syamsul'isul' Arifin
-
-var sectionArray = [1, 2, 3, 4, 5];
-
-$.each(sectionArray, function(index, value){
-          
-     $(document).scroll(function(){
-         var offsetSection = $('#' + 'section_' + value).offset().top - 90;
-         var docScroll = $(document).scrollTop();
-         var docScroll1 = docScroll + 1;
-         
-        
-         if ( docScroll1 >= offsetSection ){
-             $('.navbar-nav .nav-item .nav-link').removeClass('active');
-             $('.navbar-nav .nav-item .nav-link:link').addClass('inactive');  
-             $('.navbar-nav .nav-item .nav-link').eq(index).addClass('active');
-             $('.navbar-nav .nav-item .nav-link').eq(index).removeClass('inactive');
-         }
-         
-     });
-    
-    $('.click-scroll').eq(index).click(function(e){
-        var offsetClick = $('#' + 'section_' + value).offset().top - 90;
-        e.preventDefault();
-        $('html, body').animate({
-            'scrollTop':offsetClick
-        }, 300)
+(function ($) {
+  "use strict";
+  var links = $('.navbar-nav .nav-link');
+  var sections = $('main > section[id]');
+  function updateNavigation() {
+    var active = sections.first().attr('id');
+    sections.each(function () {
+      if (window.scrollY >= $(this).offset().top - 120) active = this.id;
     });
-    
-});
-
-$(document).ready(function(){
-    $('.navbar-nav .nav-item .nav-link:link').addClass('inactive');    
-    $('.navbar-nav .nav-item .nav-link').eq(0).addClass('active');
-    $('.navbar-nav .nav-item .nav-link:link').eq(0).removeClass('inactive');
-});
+    links.each(function () {
+      var selected = this.getAttribute('href') === '#' + active;
+      $(this).toggleClass('active', selected);
+      if (selected) this.setAttribute('aria-current', 'location');
+      else this.removeAttribute('aria-current');
+    });
+  }
+  $(window).on('scroll resize', updateNavigation);
+  $(updateNavigation);
+})(window.jQuery);
